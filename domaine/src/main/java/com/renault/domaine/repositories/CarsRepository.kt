@@ -5,5 +5,5 @@ import com.renault.domaine.models.NetworkResult
 import kotlinx.coroutines.flow.Flow
 
 interface CarsRepository {
-    fun getCars(nextPage : Int) : Flow<NetworkResult<List<Car>>>
+    suspend fun getCars(nextPage : Int) : NetworkResult<List<Car>>
 }
