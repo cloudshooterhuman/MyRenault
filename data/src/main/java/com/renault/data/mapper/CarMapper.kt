@@ -2,9 +2,10 @@ package com.renault.data.mapper
 
 import com.renault.api.models.CarDto
 import com.renault.domain.models.Car
+import javax.inject.Inject
 
 
-class CarMapper {
+class CarMapper@Inject constructor(){
     fun fromListDto(carsDto: List<CarDto>): List<Car> =
         carsDto.map { fromDto(it) }
 

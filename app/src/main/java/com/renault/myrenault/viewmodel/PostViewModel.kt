@@ -10,13 +10,15 @@ import androidx.paging.cachedIn
 import com.renault.api.paging.CarPagingSource
 import com.renault.domain.models.Car
 import com.renault.domain.usecases.CarsUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
 private const val ITEMS_PER_PAGE = 20
 
-@dagger.hilt.android.lifecycle.HiltViewModel
-class PostViewModel @javax.inject.Inject constructor(
+@HiltViewModel
+class PostViewModel @Inject constructor(
     private val postUseCase: CarsUseCase,
 ) : ViewModel() {
     var uiState: Flow<PagingData<Car>> =
