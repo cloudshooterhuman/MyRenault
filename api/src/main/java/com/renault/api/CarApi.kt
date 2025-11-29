@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class CarApi @Inject constructor() {
     companion object {
-        const val API_URL = "https://www.carqueryapi.com/api/0.3/?cmd=getModels&make=ford"
+        const val API_URL = "https://www.carqueryapi.com/api/0.3/"
     }
 
     val carsService: CarsService

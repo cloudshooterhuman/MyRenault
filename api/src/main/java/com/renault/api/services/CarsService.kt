@@ -7,6 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface CarsService {
-    @GET("post?limit=23")
+    @GET("?cmd=getModels&make=ford")
     suspend fun getCars(@Query("page") page: Int): NetworkResult<Page<CarDto>>
 }

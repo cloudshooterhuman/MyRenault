@@ -9,6 +9,6 @@ class CarMapper@Inject constructor(){
     fun fromListDto(carsDto: List<CarDto>): List<Car> =
         carsDto.map { fromDto(it) }
 
-    private fun fromDto(it: CarDto) = Car (id = it.id,
-        title = it.title, description = it.description, imageUrl = it.imageUrl)
+    private fun fromDto(it: CarDto) = Car (
+        title = it.model_name, description = it.model_make_id, imageUrl = "")
 }

@@ -33,8 +33,11 @@ fun <T : Any> handleApi(
         val body = response.body()
         // 2XX
         if (response.isSuccessful && body != null) {
-            Log.e("myapp", "onResponse isSuccessful ${response.raw() ?: ""}")
+            Log.e("myapp", "onResponse isSuccessful ${response.raw().toString() ?: ""}")
+            Log.d("API", response.raw().toString())
+            Log.d("API", response.errorBody()?.string() ?: "no error body")
             NetworkSuccess(body)
+
         } else {
             // Http Errors 4XX, 5XX ...
             // HttpException for any non-2xx HTTP status codes.

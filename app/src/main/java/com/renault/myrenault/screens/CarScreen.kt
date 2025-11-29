@@ -111,7 +111,7 @@ fun CarScreen(
                     if (lazyPagingPosts.itemCount > 0) {
                         items(
                             lazyPagingPosts.itemCount,
-                            key = lazyPagingPosts.itemKey { it.id },
+                            key = lazyPagingPosts.itemKey { it.title },
                         ) { index ->
                             lazyPagingPosts[index]?.let {
                                 PetPostItem(it, {
