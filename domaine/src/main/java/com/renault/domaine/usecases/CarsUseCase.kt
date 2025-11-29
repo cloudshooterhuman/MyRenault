@@ -1,6 +1,6 @@
-package com.renault.domaine.usecases
+package com.renault.domain.usecases
 
-import com.renault.domaine.repositories.CarsRepository
+import com.renault.domain.repositories.CarsRepository
 
 class CarsUseCase(private val repository: CarsRepository)
 {

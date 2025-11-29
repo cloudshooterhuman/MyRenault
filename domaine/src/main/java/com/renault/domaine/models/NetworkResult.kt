@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.renault.domaine.models
+package com.renault.domain.models
 /*
  * Copyright 2024 Abdellah Selassi
  *

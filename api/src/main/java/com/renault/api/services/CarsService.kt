@@ -1,6 +1,6 @@
 package com.renault.api.services
 
-import com.renault.domaine.models.NetworkResult
+import com.renault.domain.models.NetworkResult
 import com.renault.api.models.CarDto
 import com.renault.api.models.Page
 import retrofit2.http.GET

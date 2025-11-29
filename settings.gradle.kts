@@ -21,6 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "My Renault"
 include(":app")
-include(":api")
 include(":domaine")
+include(":api")
 include(":data")

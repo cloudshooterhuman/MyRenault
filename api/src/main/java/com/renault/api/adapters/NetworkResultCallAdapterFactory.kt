@@ -15,7 +15,7 @@
  */
 package com.renault.api.adapters
 
-import com.renault.domaine.models.NetworkResult
+import com.renault.domain.models.NetworkResult
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Retrofit

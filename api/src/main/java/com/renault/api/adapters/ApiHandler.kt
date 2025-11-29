@@ -18,10 +18,10 @@ package com.renault.api.adapters
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresExtension
-import com.renault.domaine.models.NetworkError
-import com.renault.domaine.models.NetworkException
-import com.renault.domaine.models.NetworkResult
-import com.renault.domaine.models.NetworkSuccess
+import com.renault.domain.models.NetworkError
+import com.renault.domain.models.NetworkException
+import com.renault.domain.models.NetworkResult
+import com.renault.domain.models.NetworkSuccess
 import retrofit2.Response
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)

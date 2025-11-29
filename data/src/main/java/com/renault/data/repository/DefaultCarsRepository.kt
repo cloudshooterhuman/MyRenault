@@ -2,12 +2,12 @@ package com.renault.data.repository
 
 import com.renault.api.services.CarsService
 import com.renault.data.mapper.CarMapper
-import com.renault.domaine.models.Car
-import com.renault.domaine.models.NetworkError
-import com.renault.domaine.models.NetworkException
-import com.renault.domaine.models.NetworkResult
-import com.renault.domaine.models.NetworkSuccess
-import com.renault.domaine.repositories.CarsRepository
+import com.renault.domain.models.Car
+import com.renault.domain.models.NetworkError
+import com.renault.domain.models.NetworkException
+import com.renault.domain.models.NetworkResult
+import com.renault.domain.models.NetworkSuccess
+import com.renault.domain.repositories.CarsRepository
 import javax.inject.Inject
 
 class DefaultCarsRepository @Inject constructor(private val carService : CarsService, val carMapper: CarMapper) : CarsRepository

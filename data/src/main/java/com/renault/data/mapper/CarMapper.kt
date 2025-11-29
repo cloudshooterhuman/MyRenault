@@ -1,7 +1,8 @@
 package com.renault.data.mapper
 
 import com.renault.api.models.CarDto
-import com.renault.domaine.models.Car
+import com.renault.domain.models.Car
+
 
 class CarMapper {
     fun fromListDto(carsDto: List<CarDto>): List<Car> =

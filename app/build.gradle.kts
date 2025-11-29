@@ -2,14 +2,15 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    kotlin("kapt")
 }
 
 android {
-    namespace = "com.renault.myrenault"
+    namespace = "com.renault.myrenault.app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.renault.myrenault"
+        applicationId = "com.renault.myrenault.app"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -37,23 +38,62 @@ android {
     buildFeatures {
         compose = true
     }
+    buildToolsVersion = "35.0.0"
 }
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(project(":domaine"))
+    implementation(project(":data"))
+
+    // Compose
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    implementation(libs.ui)
+    implementation(libs.material3)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.runtime)
+    implementation(libs.androidx.compose.material3.material3)
+    implementation(libs.ui.tooling.preview)
+    implementation(project(":api"))
+    debugImplementation(libs.ui.tooling)
+
+    // Lifecycle utilities for Compose
+    implementation(libs.lifecycle.runtime.compose)
+
+    // Paging 3
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose)
+
+    // Retrofit
+    api(libs.retrofit)
+    implementation(libs.converter.gson)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.ui.tooling.preview.android)
+    kapt(libs.dagger.hilt.android.compiler)
+
+    // UI
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.material)
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.navigation.runtime.ktx)
+    implementation(libs.navigation.fragment.ktx)
+
+    // Compose images loader
+    implementation(libs.coil.compose)
+
+    // Logging
+    implementation(libs.timber)
+
+    // Testing
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.paging.testing)
+
 }
