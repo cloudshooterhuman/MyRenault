@@ -37,6 +37,7 @@ uiTooling = "1.6.8"
 uiToolingPreview = "1.6.8"
 uiToolingPreviewAndroid = "1.6.8"
 pagingCommonAndroid = "3.3.6"
+hilt = "2.51"
 
 [libraries]
 androidx-compose-material3-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
@@ -93,4 +94,5 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 

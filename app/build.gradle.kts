@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     kotlin("kapt")
+    alias(libs.plugins.hilt.android)      // ← ADD THIS
 }
 
 android {
@@ -57,6 +58,11 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     implementation(project(":api"))
     debugImplementation(libs.ui.tooling)
+
+    implementation("com.google.dagger:hilt-android:2.54")
+    kapt("com.google.dagger:hilt-android-compiler:2.51")
+
+
 
     // Lifecycle utilities for Compose
     implementation(libs.lifecycle.runtime.compose)
