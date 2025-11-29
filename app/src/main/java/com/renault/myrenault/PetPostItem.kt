@@ -50,7 +50,7 @@ import com.renault.myrenault.app.R
 
 @Composable
 fun PetPostItem(
-    post: Car,
+    car: Car,
     onClick: () -> Unit,
     elevation: Dp = 8.dp,
     titleStyle: TextStyle = MaterialTheme.typography.titleMedium,
@@ -79,10 +79,10 @@ fun PetPostItem(
         Row(Modifier.background(Color.White)) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(post.imageUrl)
+                    .data(car.imageUrl)
                     .crossfade(true)
                     .build(),
-                contentDescription = post.title,
+                contentDescription = car.title,
                 contentScale = ContentScale.Crop,
                 placeholder = painterResource(id = R.drawable.ic_launcher_background),
                 modifier = Modifier
@@ -99,36 +99,27 @@ fun PetPostItem(
                 Row(verticalAlignment = Alignment.CenterVertically) {
 
                     Text(
-                        text = post.description,
+                        text = car.title,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier
                             .padding(start = 8.dp)
                             .weight(1f)
                             .wrapContentWidth(Alignment.Start),
                     )
-                    AsyncImage(
-                        model = ImageRequest.Builder(LocalContext.current)
-                            .data(post.imageUrl)
-                            .crossfade(true)
-                            .build(),
-                        contentDescription = post.imageUrl,
-                        contentScale = ContentScale.Crop,
-                        placeholder = painterResource(id = R.drawable.ic_launcher_background),
-                        modifier = reusableAsyncModifier,
-                    )
-                }
-
-
                 }
 
                 Text(
-                    text = post.title,
-                    // maxLines = 2,
-                    // overflow = TextOverflow.Ellipsis,
+                    text = car.description,
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier
+                        .padding(start = 8.dp)
                         .weight(1f)
-                        .padding(top = 8.dp, bottom = 4.dp),
+                        .wrapContentWidth(Alignment.Start),
                 )
+
+                }
+
+
             }
         }
     }
