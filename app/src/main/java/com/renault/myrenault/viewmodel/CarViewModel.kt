@@ -18,7 +18,7 @@ import javax.inject.Inject
 private const val ITEMS_PER_PAGE = 20
 
 @HiltViewModel
-class PostViewModel @Inject constructor(
+class CarViewModel @Inject constructor(
     private val postUseCase: CarsUseCase,
 ) : ViewModel() {
     var uiState: Flow<PagingData<Car>> =
