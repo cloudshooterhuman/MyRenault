@@ -44,11 +44,11 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import com.cleancompose.ui.components.PetPostItem
-import com.renault.myrenault.viewmodel.PostViewModel
 import com.renault.myrenault.app.R
 import com.renault.myrenault.componenet.EmptyListIndicator
 import com.renault.myrenault.componenet.LoadingIndicator
 import com.renault.myrenault.componenet.NetworkErrorIndicator
+import com.renault.myrenault.viewmodel.PostViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.net.URLEncoder
@@ -79,74 +79,74 @@ fun CarScreen(
     val scope = rememberCoroutineScope()
 
 
-        Box {
-            LazyColumn(state = listState) {
-                when (val state = lazyPagingPosts.loadState.refresh) {
-                    is LoadState.NotLoading -> {
-                        val isEmptyPostList = lazyPagingPosts.itemCount == 0
-                        if (isEmptyPostList) {
-                            item {
-                                EmptyListIndicator(modifier)
-                            }
-                        }
-                    }
-
-                    is LoadState.Loading -> {
+    Box(modifier) {
+        LazyColumn(state = listState) {
+            when (val state = lazyPagingPosts.loadState.refresh) {
+                is LoadState.NotLoading -> {
+                    val isEmptyPostList = lazyPagingPosts.itemCount == 0
+                    if (isEmptyPostList) {
                         item {
-                            LoadingIndicator(modifier)
-                        }
-                    }
-
-                    is LoadState.Error -> {
-                        item {
-                            NetworkErrorIndicator(
-                                state.error.message ?: stringResource(R.string.unknwon_error),
-                                modifier,
-                            ) { lazyPagingPosts.retry() }
+                            EmptyListIndicator(modifier)
                         }
                     }
                 }
 
-                if (!pullToRefreshState.isRefreshing) {
-                    if (lazyPagingPosts.itemCount > 0) {
-                        items(
-                            lazyPagingPosts.itemCount,
-                            key = lazyPagingPosts.itemKey { it.title },
-                        ) { index ->
-                            lazyPagingPosts[index]?.let {
-                                PetPostItem(it, {
-                                    val imageUrl = it.imageUrl
-                                    val encodedUrl =
-                                        URLEncoder.encode(
-                                            imageUrl,
-                                            StandardCharsets.UTF_8.toString(),
-                                        )
+                is LoadState.Loading -> {
+                    item {
+                        LoadingIndicator(modifier)
+                    }
+                }
 
-                                })
-                            }
-                        }
+                is LoadState.Error -> {
+                    item {
+                        NetworkErrorIndicator(
+                            state.error.message ?: stringResource(R.string.unknwon_error),
+                            modifier,
+                        ) { lazyPagingPosts.retry() }
                     }
                 }
             }
 
-            if (showUpButton) {
-                SmallFloatingActionButton(
-                    modifier = Modifier
-                        .navigationBarsPadding()
-                        .align(Alignment.BottomEnd)
-                        .padding(8.dp),
-                    onClick = {
-                        scope.launch {
-                            listState.animateScrollToItem(index = 0)
+            if (!pullToRefreshState.isRefreshing) {
+                if (lazyPagingPosts.itemCount > 0) {
+                    items(
+                        lazyPagingPosts.itemCount,
+                        key = lazyPagingPosts.itemKey { it.title },
+                    ) { index ->
+                        lazyPagingPosts[index]?.let {
+                            PetPostItem(it, {
+                                val imageUrl = it.imageUrl
+                                val encodedUrl =
+                                    URLEncoder.encode(
+                                        imageUrl,
+                                        StandardCharsets.UTF_8.toString(),
+                                    )
+
+                            })
                         }
-                    },
-                ) {
-                    Icon(
-                        imageVector = Icons.Rounded.SwipeUp,
-                        contentDescription = stringResource(id = R.string.publication_date),
-                        modifier = Modifier.size(32.dp),
-                    )
+                    }
                 }
             }
         }
+
+        if (showUpButton) {
+            SmallFloatingActionButton(
+                modifier = Modifier
+                    .navigationBarsPadding()
+                    .align(Alignment.BottomEnd)
+                    .padding(8.dp),
+                onClick = {
+                    scope.launch {
+                        listState.animateScrollToItem(index = 0)
+                    }
+                },
+            ) {
+                Icon(
+                    imageVector = Icons.Rounded.SwipeUp,
+                    contentDescription = stringResource(id = R.string.publication_date),
+                    modifier = Modifier.size(32.dp),
+                )
+            }
+        }
     }
+}
