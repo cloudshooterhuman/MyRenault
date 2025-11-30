@@ -18,13 +18,9 @@ package com.renault.myrenault.screens
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.SwipeUp
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
@@ -60,7 +56,7 @@ fun CarScreen(
     modifier: Modifier = Modifier,
     viewModel: CarViewModel = hiltViewModel(),
 ) {
-    val lazyPagingPosts = viewModel.uiState.collectAsLazyPagingItems()
+    val lazyPagingCars = viewModel.uiState.collectAsLazyPagingItems()
 
     var itemCount by remember { mutableIntStateOf(15) }
     val pullToRefreshState = rememberPullToRefreshState()
@@ -81,10 +77,10 @@ fun CarScreen(
 
     Box(modifier) {
         LazyColumn(state = listState) {
-            when (val state = lazyPagingPosts.loadState.refresh) {
+            when (val state = lazyPagingCars.loadState.refresh) {
                 is LoadState.NotLoading -> {
-                    val isEmptyPostList = lazyPagingPosts.itemCount == 0
-                    if (isEmptyPostList) {
+                    val isEmptyCarsList = lazyPagingCars.itemCount == 0
+                    if (isEmptyCarsList) {
                         item {
                             EmptyListIndicator(modifier)
                         }
@@ -102,18 +98,18 @@ fun CarScreen(
                         NetworkErrorIndicator(
                             state.error.message ?: stringResource(R.string.unknwon_error),
                             modifier,
-                        ) { lazyPagingPosts.retry() }
+                        ) { lazyPagingCars.retry() }
                     }
                 }
             }
 
             if (!pullToRefreshState.isRefreshing) {
-                if (lazyPagingPosts.itemCount > 0) {
+                if (lazyPagingCars.itemCount > 0) {
                     items(
-                        lazyPagingPosts.itemCount,
-                        key = lazyPagingPosts.itemKey { it.title },
+                        lazyPagingCars.itemCount,
+                        key = lazyPagingCars.itemKey { it.title },
                     ) { index ->
-                        lazyPagingPosts[index]?.let {
+                        lazyPagingCars[index]?.let {
                             CarItem(it, {
                                 val imageUrl = it.imageUrl
                                 val encodedUrl =
@@ -141,11 +137,7 @@ fun CarScreen(
                     }
                 },
             ) {
-                Icon(
-                    imageVector = Icons.Rounded.SwipeUp,
-                    contentDescription = stringResource(id = R.string.publication_date),
-                    modifier = Modifier.size(32.dp),
-                )
+
             }
         }
     }

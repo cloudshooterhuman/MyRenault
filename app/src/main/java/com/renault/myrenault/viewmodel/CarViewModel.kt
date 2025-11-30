@@ -19,7 +19,7 @@ private const val ITEMS_PER_PAGE = 20
 
 @HiltViewModel
 class CarViewModel @Inject constructor(
-    private val postUseCase: CarsUseCase,
+    private val cartUseCase: CarsUseCase,
 ) : ViewModel() {
     var uiState: Flow<PagingData<Car>> =
         Pager(
@@ -29,7 +29,7 @@ class CarViewModel @Inject constructor(
             ),
             pagingSourceFactory = {
                 CarPagingSource(
-                    postUseCase,
+                    cartUseCase,
                 )
             },
         ).flow
@@ -37,19 +37,4 @@ class CarViewModel @Inject constructor(
             .onEach {
                 Log.d("myapp", it.toString())
             }
-
-    private fun getAllPosts() {
-        uiState = Pager(
-            config = PagingConfig(
-                pageSize = ITEMS_PER_PAGE,
-                enablePlaceholders = true,
-            ),
-            pagingSourceFactory = {
-                CarPagingSource(
-                    postUseCase,
-                )
-            },
-        ).flow
-            .cachedIn(viewModelScope)
-    }
 }

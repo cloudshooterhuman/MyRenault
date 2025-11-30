@@ -25,6 +25,6 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 object CarServiceModule {
     @Provides
-    fun providePostService() =
+    fun provideCarService() =
         CarApi().carsService
 }

@@ -28,46 +28,45 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import java.util.UUID
 
-class GetPostUseCaseTest {
+class GetCarUseCaseTest {
     private val carRepository: CarsRepository = mockk()
     private val getCarUseCase = CarsUseCase(carRepository)
 
     @Test
-    fun `Given repository returns full list, When GetPostUseCase is invoked, Then returns full list`() =
+    fun `Given repository returns full list, When GetCarUseCase is invoked, Then returns full list`() =
         runTest {
             // Given
-            val expectedPostsList = List(23) {
+            val expectedCarsList = List(23) {
                 getDefaultModelCar()
             }
 
-            coEvery { carRepository.getCars(0) } returns NetworkSuccess(expectedPostsList)
+            coEvery { carRepository.getCars(0) } returns NetworkSuccess(expectedCarsList)
 
             // When
-            val actualPostsList = getCarUseCase.invoke(0) as NetworkSuccess
+            val actualCarsList = getCarUseCase.invoke(0) as NetworkSuccess
 
             // Then
-            assertEquals(expectedPostsList, actualPostsList.data)
+            assertEquals(expectedCarsList, actualCarsList.data)
         }
 
     @Test
-    fun `Given repository returns empty list, When GetPostUseCase is invoked, Then returns empty list`() =
+    fun `Given repository returns empty list, When GetCarUseCase is invoked, Then returns empty list`() =
         runTest {
             // Given
             coEvery { carRepository.getCars(0) } returns NetworkSuccess(emptyList())
 
             // When
-            val postsList = getCarUseCase.invoke(0) as NetworkSuccess
+            val carsList = getCarUseCase.invoke(0) as NetworkSuccess
 
             // Then
-            assertTrue(postsList.data.isEmpty())
+            assertTrue(carsList.data.isEmpty())
         }
 
     // Unit test exception case
 
     @Test
-    fun `Given repository returns exception, When GetPostUseCase is invoked, Then returns exception`() =
+    fun `Given repository returns exception, When GetCarUseCase is invoked, Then returns exception`() =
         runTest {
             val e: Throwable = Throwable("exception")
             // Given
@@ -82,7 +81,7 @@ class GetPostUseCaseTest {
 
     // Unit test error case
     @Test
-    fun `Given repository returns error, When GetPostUseCase is invoked, Then returns error`() =
+    fun `Given repository returns error, When GetCarUseCase is invoked, Then returns error`() =
         runTest {
             // Given
             coEvery { carRepository.getCars(0) } returns NetworkError(500, "error")

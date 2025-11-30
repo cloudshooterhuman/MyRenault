@@ -10,7 +10,7 @@ import com.renault.domain.usecases.CarsUseCase
 
 const val STARTING_PAGE_INDEX = 0
 
-class CarPagingSource(private val getPostUseCase: CarsUseCase) :
+class CarPagingSource(private val getCarUseCase: CarsUseCase) :
     PagingSource<Int, Car>() {
 
     // The refresh key is used for the initial load of the next PagingSource, after invalidation
@@ -27,7 +27,7 @@ class CarPagingSource(private val getPostUseCase: CarsUseCase) :
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Car> {
         val nextPage: Int = params.key ?: STARTING_PAGE_INDEX
 //        Log.e("myapp", "PostPagingSource ${Thread.currentThread().name}")
-        return when (val result = getPostUseCase.invoke(nextPage)) {
+        return when (val result = getCarUseCase.invoke(nextPage)) {
             is NetworkSuccess ->
                 LoadResult.Page(
                     data = result.data,
