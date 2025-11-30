@@ -50,15 +50,6 @@
 <img src="https://github.com/selmanon/composeCleanArch/assets/2206036/6d5d69e3-8a1b-4ff0-ac7d-ccd5e1df9fad" alt="drawing" width="700"/>
 </p>
 
-## Application Rendering
-
-<p align="center">
-  <img src="https://github.com/selmanon/BluePets/blob/main/screenshoots/home.png" width="250" title="Home screen">
-  &nbsp; &nbsp; &nbsp; 
-  <img src="https://github.com/selmanon/BluePets/blob/main/screenshoots/post_screen.png" width="250" alt="Post screen">
-  &nbsp; &nbsp; &nbsp; 
-  <img src="https://github.com/selmanon/BluePets/blob/main/screenshoots/error.png" width="250" alt="Error screen">
-</p>
 
 ## Areas for Improvement:
 
