@@ -49,7 +49,7 @@ import com.renault.myrenault.app.R
 
 
 @Composable
-fun PetPostItem(
+fun CarItem(
     car: Car,
     onClick: () -> Unit,
     elevation: Dp = 8.dp,

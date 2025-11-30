@@ -43,12 +43,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
-import com.cleancompose.ui.components.PetPostItem
+import com.cleancompose.ui.components.EmptyListIndicator
+import com.cleancompose.ui.components.LoadingIndicator
+import com.cleancompose.ui.components.NetworkErrorIndicator
+import com.cleancompose.ui.components.CarItem
 import com.renault.myrenault.app.R
-import com.renault.myrenault.componenet.EmptyListIndicator
-import com.renault.myrenault.componenet.LoadingIndicator
-import com.renault.myrenault.componenet.NetworkErrorIndicator
-import com.renault.myrenault.viewmodel.PostViewModel
+import com.renault.myrenault.viewmodel.CarViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.net.URLEncoder
@@ -58,7 +58,7 @@ import java.nio.charset.StandardCharsets
 @Composable
 fun CarScreen(
     modifier: Modifier = Modifier,
-    viewModel: PostViewModel = hiltViewModel(),
+    viewModel: CarViewModel = hiltViewModel(),
 ) {
     val lazyPagingPosts = viewModel.uiState.collectAsLazyPagingItems()
 
@@ -114,7 +114,7 @@ fun CarScreen(
                         key = lazyPagingPosts.itemKey { it.title },
                     ) { index ->
                         lazyPagingPosts[index]?.let {
-                            PetPostItem(it, {
+                            CarItem(it, {
                                 val imageUrl = it.imageUrl
                                 val encodedUrl =
                                     URLEncoder.encode(
